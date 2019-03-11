@@ -41,7 +41,9 @@ int main() {
     }
     int max_index = bfs(1);
     // cout << "1st: " << max_index << endl;
-    memset(visit, 0, sizeof(visit) / sizeof(int));
+    memset(
+        visit, 0,
+        sizeof(visit)); // check the prototype of the function memset()!!!!!!!!
     max_index = bfs(max_index);
     // cout << "2nd: " << max_index << endl;
     printf("%d", cost);
