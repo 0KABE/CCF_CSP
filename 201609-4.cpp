@@ -1,17 +1,19 @@
 /*
-score 70
+AC
 */
 #include<bits/stdc++.h>
 using namespace std;
 /*
-5 7
-1 2 4
-1 3 5
+6 9
+1 2 6
+3 1 3
+6 1 4
+6 3 5
+4 3 6
+4 5 1
 2 3 2
-2 4 3
-3 4 2
-2 5 2
-4 5 5
+5 2 3
+3 5 7
 */
 struct Node{
 	int index,dis;
@@ -33,6 +35,7 @@ int main(){
 	for(int i=0,a,b,c;i<m;i++){
 		scanf("%d%d%d",&a,&b,&c);
 		G[a].push_back(Node{b,c});
+		G[b].push_back(Node{a,c});
 	}
 	
 	
@@ -41,7 +44,7 @@ int main(){
 		int index=Q.front();
 		Q.pop();
 		for(auto w:G[index]){
-			if(vis[w.index]>=vis[index]+w.dis && edge[w.index]>w.dis){
+			if(vis[w.index]>vis[index]+w.dis||vis[w.index]==vis[index]+w.dis && edge[w.index]>w.dis){
 				Q.push(w.index);
 				vis[w.index]=vis[index]+w.dis;
 				edge[w.index]=w.dis;
@@ -51,7 +54,6 @@ int main(){
 	
 	int ans=0;
 	for(int i=1;i<=n;i++){
-//		cout<<i<<": "<<edge[i]<<endl;
 		ans+=edge[i];
 	}
 	printf("%d",ans);
